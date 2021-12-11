@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Booking Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--jQuery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--Latest compiled and minified JavaScript-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+    <!-- CODE HIDDEN -->
+    <SCRIPT language=JavaScript>
+        // <!--http://www.spacegun.co.uk -->
+        var message = "function disabled";
+        function rtclickcheck(keyp) {
+            if (navigator.appName == "Netscape" && keyp.which == 3) { alert(message); return false; }
+            if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) { alert(message); return false; }
+        }
+        document.onmousedown = rtclickcheck;
+    </SCRIPT>
+
+    <script>
+        /*function check(e)
+        {
+        alert(e.keyCode);
+        }*/
+        document.onkeydown = function (e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)) {//Alt+c, Alt+v will also be disabled sadly.
+                alert('not allowed');
+            }
+            return false;
+        };
+    </script>
+    <style>
+    </style>
+</head>
+
+<body class="body1">
+    <nav class="navbar navbar-default nav1 navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand"><span class="font"><i class="bi bi-camera-fill">&nbsp;Prasad Vaidya Photography~</span></i></a>
+            </div>
+            <div class="collapse navbar-collapse" id="mynavbar">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li><a href="home.html"><i class="bi bi-house-door-fill"></i>Home</a></li>-->
+                    <li><a href="index.html"><i class="bi bi-file-earmark-person"></i>LogOut</a></li>
+                   <!--<li><a href="booking.html"><i class="bi bi-telephone-fill"></i>contact</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container margin">
+    <h1 class="booking">Booking Details:-</h1>
+    
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <th>message</th>
+
+                </tr>
+            </thead>
+            <?php
+            $con = mysqli_connect("localhost", "photo", "Photo@124#", "photo") or die(mysqli_error($con));
+            if ($con->connect_error) {
+                die("connection failed:" . $con->connect_error);
+            }
+            $sql = "SELECT ID,First_Name,Email,Address,Contact,message from booking";
+            $result = mysqli_query($con, $sql);
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>
+                           <td>" . $row['ID'] . "</td>
+                           <td>" . $row['First_Name'] . "</td>
+                           <td>" . $row['Email'] . "</td>
+                           <td>" . $row['Address'] . "</td>
+                           <td>" . $row['Contact'] . "</td>
+                           <td>" . $row['message'] . "</td>
+                        </tr>";
+            }
+            $con->close();
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <div id="section6">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 nav1 navbar-inverse">
+                            <div class="navbar">
+                                <a href="#" class="navbar-brand">&copy; 2021 prasad vaidya Photography. All rights
+                                    reserved.</a>
+                            </div>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
