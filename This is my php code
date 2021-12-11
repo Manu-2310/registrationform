@@ -1,0 +1,26 @@
+<?php
+error_reporting(0);
+$con=new mysqli("localhost","photo","Photo@124#","photo") or die("Error mysql=".mysqli_error($con));
+
+if(isset($_POST['view']))
+{
+    $user=$_POST['username'];
+    $pwd=$_POST['password'];
+    $sql="select user,pass from login where user='".$user."' and pass='".$pwd."'";
+    $result=$con->query($sql);
+
+    if($result->num_rows>0)
+    {
+       
+        $alert="<script> alert('Login successful')</script>";
+        echo $alert;
+        include 'details.php';
+        
+    }
+    else{
+        $alert="<script> alert('login failed. please check your username or password')</script>";
+        echo $alert;
+        include 'index.html';
+    }
+}
+?>
